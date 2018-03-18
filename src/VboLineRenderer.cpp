@@ -42,7 +42,7 @@ void VboLineRenderer::setColor(ofFloatColor c) {
 void VboLineRenderer::initVbo() {
     vbo.setVertexData(vertices, VBOLINE_VERTS_MAX, GL_DYNAMIC_DRAW);
     vbo.setColorData(colors, VBOLINE_VERTS_MAX, GL_DYNAMIC_DRAW);
-    vbo.setIndexData(indices, VBOLINE_VERTS_MAX, GL_DYNAMIC_DRAW);
+    vbo.setIndexData(indices, VBOLINE_INDICES_MAX, GL_DYNAMIC_DRAW);
 }
 
 void VboLineRenderer::initCount() {
@@ -91,6 +91,7 @@ void VboLineRenderer::draw() {
    
     
     vbo.drawElements(GL_TRIANGLES, indicesCount);
+    
     
     initCount();
 }
