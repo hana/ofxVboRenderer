@@ -1,21 +1,21 @@
 //
-//  VboRenderer.hpp
-//  vboCircle
+//  ofxVboRenderer.hpp
+//  ofxVboRenderer
 //
 //  Created by Hana on 2018/01/24.
 //
 //
 
-#ifndef VboRenderer_hpp
-#define VboRenderer_hpp
+#ifndef ofxVboRenderer_hpp
+#define ofxVboRenderer_hpp
 
 #include "ofMain.h"
 #include "VboCircleRenderer.hpp"
 #include "VboLineRenderer.hpp"
 
-class VboRenderer {
+class ofxVboRenderer {
 public:
-    VboRenderer();
+    ofxVboRenderer();
     void setup();
     void setup(float w, float h);
     void setColor(float c);
@@ -26,11 +26,10 @@ public:
     void line(float x1, float y1, float x2, float y2, float _thick);
     
 private:
-//    void setEvents();
     VboCircleRenderer circleRenderer;
     VboLineRenderer lineRenderer;
     float width ,height;
     
 };
 
-#endif /* VboRenderer_hpp */
+#endif /* ofxVboRenderer_hpp */
