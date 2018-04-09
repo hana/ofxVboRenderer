@@ -23,6 +23,16 @@ void ofxVboRenderer::setup(float w, float h) {
 }
 
 
+void ofxVboRenderer::setScreenSize() {
+    circleRenderer.setScreenSize();
+    lineRenderer.setScreenSize();
+}
+
+void ofxVboRenderer::setScreenSize(float w, float h) {
+    circleRenderer.setScreenSize(w, h);
+    lineRenderer.setScreenSize(w, h);
+}
+
 void ofxVboRenderer::setColor(float c) {
     circleRenderer.setColor(c);
     lineRenderer.setColor(c);

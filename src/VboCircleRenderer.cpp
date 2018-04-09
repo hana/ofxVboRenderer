@@ -15,19 +15,27 @@ VboCircleRenderer::VboCircleRenderer() {
 }
 
 void VboCircleRenderer::setup() {
-    width = ofGetWidth();
-    height = ofGetHeight();
+    setScreenSize();
     baseRad = width;
     
     initVbo();
 }
 
 void VboCircleRenderer::setup(float w, float h) {
-    width = w;
-    height = h;
+    setScreenSize(w, h);
     baseRad = width;
     
     initVbo();
+}
+
+void VboCircleRenderer::setScreenSize() {
+    width = ofGetWidth();
+    height = ofGetHeight();
+}
+
+void VboCircleRenderer::setScreenSize(float w, float h) {
+    width = w;
+    height = h;
 }
 
 void VboCircleRenderer::setColor(ofFloatColor _color) {

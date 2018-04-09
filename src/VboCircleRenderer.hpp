@@ -32,6 +32,8 @@ public:
     VboCircleRenderer();
     void setup();
     void setup(float w, float h);
+    void setScreenSize();
+    void setScreenSize(float w, float h);
     void setColor(ofFloatColor _color);
     void setColor(float c);
     void setLineWidth(float w);

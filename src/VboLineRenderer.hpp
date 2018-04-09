@@ -20,6 +20,8 @@ public:
     VboLineRenderer();
     void setup();
     void setup(float w, float h);
+    void setScreenSize();
+    void setScreenSize(float w, float h);
     void setColor(float c);
     void setColor(ofFloatColor c);
  

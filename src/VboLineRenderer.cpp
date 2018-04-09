@@ -15,20 +15,27 @@ VboLineRenderer::VboLineRenderer() {
 }
 
 void VboLineRenderer::setup() {
-    width = ofGetWidth();
-    height = ofGetHeight();
+    setScreenSize();
     
     initVbo();
     initCount();
 }
 
 void VboLineRenderer::setup(float w, float h) {
-    width = w;
-    height = h;
+    setScreenSize(w, h);
     
     initVbo();
 }
 
+void VboLineRenderer::setScreenSize() {
+    width = ofGetWidth();
+    height = ofGetHeight();
+}
+
+void VboLineRenderer::setScreenSize(float w, float h) {
+    width = w;
+    height = h;
+}
 
 void VboLineRenderer::setColor(float c) {
     color = ofFloatColor(c);
