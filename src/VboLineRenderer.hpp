@@ -22,7 +22,7 @@ public:
     void setup(float w, float h);
     void setScreenSize();
     void setScreenSize(float w, float h);
-    void setColor(float c);
+    void setColor(float brightness, float alpha = 1.0);
     void setColor(ofFloatColor c);
  
     void line(float x1, float y1, float x2, float y2, float _thick);    //1.0 equals to display width

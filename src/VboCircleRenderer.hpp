@@ -18,10 +18,6 @@ struct vbo_count_t {
     int index = 0;
 };
 
-enum circle_type_e {
-    filled, noFill,
-};
-
 static constexpr int CIRCLE_NUM_PER_AG = 64;
 static constexpr int CIRCLE_NUM_MAX = 1024;
 static constexpr int RESOLUTION_MAX = 120;
@@ -35,7 +31,7 @@ public:
     void setScreenSize();
     void setScreenSize(float w, float h);
     void setColor(ofFloatColor _color);
-    void setColor(float c);
+    void setColor(float brightness, float alpha = 1.0);
     void setLineWidth(float w);
     void setBaseRad(int _baseRad);
     void draw();
@@ -51,9 +47,9 @@ private:
     
     int getResolution(float size);
     
-    void addVertex(circle_type_e type, ofVec2f pos);
-    void addIndex(circle_type_e type, ofIndexType index);
-    void addColor(circle_type_e type, ofFloatColor color);
+    void addVertex(bool isFilled, ofVec2f pos);
+    void addIndex(bool isFilled, ofIndexType index);
+    void addColor(bool isFilled, ofFloatColor color);
     void resetCounter();
     
     int baseRad;
