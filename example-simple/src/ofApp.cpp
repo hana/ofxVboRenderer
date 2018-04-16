@@ -12,8 +12,12 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
+    renderer.setColor(1.0, 1.0, 1.0, ofRandom(1.0));  //Alpha is normally enabled
     renderer.circle(0.2, 0.5, 0.1, true);   // x, y, size, fill
+    
+    renderer.setColor(1.0);
     renderer.line(0.8, 0.2, 0.8, 0.8, 0.01);    // x1, y1, x2, y2, thick
+    
 }
 
 //--------------------------------------------------------------

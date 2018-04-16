@@ -42,8 +42,8 @@ void VboCircleRenderer::setColor(ofFloatColor _color) {
     color = _color;
 }
 
-void VboCircleRenderer::setColor(float c) {
-    color = ofFloatColor(c, c, c);
+void VboCircleRenderer::setColor(float brightness, float alpha) {
+    color = ofFloatColor(brightness, alpha);
 }
 
 void VboCircleRenderer::initVbo() {
@@ -94,32 +94,32 @@ void VboCircleRenderer::filledCircle(float x, float y, float size) {
     
     //Set Center vertex
     ofVec2f center = ofVec2f(x * width, y * height);
-    addVertex(filled, center);  //Add Center first
-    addColor(filled, color);
+    addVertex(true, center);
+    addColor(true, color);
     
     float rad = 0;
     ofVec2f pos;
     for(int i = 0; i < res; i++) {
         rad = oneStep * i;
         pos = getVertPos(x, y, rad, size);
-        addVertex(filled, pos);
-        //cout << "Vertex :" << pos << endl;
+        addVertex(true, pos);
+
         
         //Center Vertex
-        addIndex(filled, baseIndex);
-        addColor(filled, color);
+        addIndex(true, baseIndex);
+        addColor(true, color);
         
         //First
-        addIndex(filled, baseIndex + i + 1);
-        addColor(filled, color);
+        addIndex(true, baseIndex + i + 1);
+        addColor(true, color);
         
         //Second
         if(i == (res - 1)) {
-            addIndex(filled, baseIndex + 1);
-            addColor(filled, color);
+            addIndex(true, baseIndex + 1);
+            addColor(true, color);
         } else {
-            addIndex(filled, baseIndex + i + 2);
-            addColor(filled, color);
+            addIndex(true, baseIndex + i + 2);
+            addColor(true, color);
         }
     }
 }
@@ -136,19 +136,19 @@ void VboCircleRenderer::noFillCircle(float x, float y, float size) {
     for(int i = 0; i < res; i++) {
         rad = oneStep * i;
         pos = getVertPos(x, y, rad, size);
-        addVertex(noFill, pos); //put into base index
+        addVertex(false, pos); //put into base index
         
         //This Vertex
-        addIndex(noFill, baseIndex + i);
-        addColor(noFill, color);
+        addIndex(false, baseIndex + i);
+        addColor(false, color);
         
         //Second
         if(i == (res - 1)) {
-            addIndex(noFill, baseIndex);
-            addColor(noFill, color);
+            addIndex(false, baseIndex);
+            addColor(false, color);
         } else {
-            addIndex(noFill, baseIndex + i + 1);
-            addColor(noFill, color);
+            addIndex(false, baseIndex + i + 1);
+            addColor(false, color);
         }
     }
 }
@@ -181,48 +181,35 @@ int VboCircleRenderer::getResolution(float size) {  //Set resolution depening on
 }
 
 
-void VboCircleRenderer::addVertex(circle_type_e type, ofVec2f pos) {
-    switch (type) {
-        case filled:
-            filledCirclePos[filledCounter.vertex] = pos;
-            filledCounter.vertex++;
-            break;
-        case noFill:
-            noFillCirclePos[noFillCounter.vertex] = pos;
-            noFillCounter.vertex++;
-            break;
-        default:
-            break;
+void VboCircleRenderer::addVertex(bool isFilled, ofVec2f pos) {
+    if(isFilled) {
+        filledCirclePos[filledCounter.vertex] = pos;
+        filledCounter.vertex++;
+    } else {
+        noFillCirclePos[noFillCounter.vertex] = pos;
+        noFillCounter.vertex++;
     }
+    
 }
 
-void VboCircleRenderer::addColor(circle_type_e type, ofFloatColor color) {
-    switch (type) {
-        case filled:
-            filledCircleColors[filledCounter.color] = color;
-            filledCounter.color++;
-            break;
-        case noFill:
-            noFillCircleColors[noFillCounter.color] = color;
-            noFillCounter.color++;
-            break;
-        default:
-            break;
+void VboCircleRenderer::addColor(bool isFilled, ofFloatColor color) {
+    if (isFilled) {
+        filledCircleColors[filledCounter.color] = color;
+        filledCounter.color++;
+    } else {
+        noFillCircleColors[noFillCounter.color] = color;
+        noFillCounter.color++;
     }
+    
 }
 
-void VboCircleRenderer::addIndex(circle_type_e type, ofIndexType index) {
-    switch (type) {
-        case filled:
-            filledCircleIndices[filledCounter.index] = index;
-            filledCounter.index++;
-            break;
-        case noFill:
-            noFillCircleIndices[noFillCounter.index] = index;
-            noFillCounter.index++;
-            break;
-        default:
-            break;
+void VboCircleRenderer::addIndex(bool isFilled, ofIndexType index) {
+    if (isFilled) {
+        filledCircleIndices[filledCounter.index] = index;
+        filledCounter.index++;
+    } else {
+        noFillCircleIndices[noFillCounter.index] = index;
+        noFillCounter.index++;
     }
 }
 

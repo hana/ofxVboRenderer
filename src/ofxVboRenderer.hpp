@@ -15,12 +15,12 @@
 
 class ofxVboRenderer {
 public:
-    ofxVboRenderer();
     void setup();
     void setup(float w, float h);
     void setScreenSize();
     void setScreenSize(float w, float h);
-    void setColor(float c);
+    void setColor(float brightness, float alpha = 1.0);
+    void setColor(float red, float green, float blue, float alpha = 1.0);
     void setColor(ofFloatColor c);
     void setCircleBaseRad(int baseRad);
     void draw();
@@ -31,6 +31,7 @@ private:
     VboCircleRenderer circleRenderer;
     VboLineRenderer lineRenderer;
     float width ,height;
+    ofFloatColor colorBuffer;
     
 };
 
