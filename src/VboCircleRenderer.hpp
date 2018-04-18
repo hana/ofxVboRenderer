@@ -31,7 +31,7 @@ public:
     void setScreenSize();
     void setScreenSize(float w, float h);
     void setColor(ofFloatColor _color);
-    void setColor(float c);
+    void setColor(float brightness, float alpha = 1.0);
     void setLineWidth(float w);
     void setBaseRad(int _baseRad);
     void draw();
@@ -39,7 +39,7 @@ public:
     void filledCircle(float x, float y, float size);
     void noFillCircle(float x, float y, float size);
     
-
+    
     ofVec2f getVertPos(float centerX, float centerY, float rad, float size);
     
 private:
@@ -56,7 +56,7 @@ private:
     float width, height, lineWidth;
     ofFloatColor color;
     
-
+    
     
     //VBO
     vbo_count_t filledCounter;

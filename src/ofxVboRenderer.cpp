@@ -37,10 +37,17 @@ void ofxVboRenderer::setScreenSize(float w, float h) {
     triangleRenderer.setScreenSize(w, h);
 }
 
-void ofxVboRenderer::setColor(float c) {
-    circleRenderer.setColor(c);
-    lineRenderer.setColor(c);
-    triangleRenderer.setColor(c);
+void ofxVboRenderer::setColor(float brightness, float alpha) {
+    circleRenderer.setColor(brightness, alpha);
+    lineRenderer.setColor(brightness, alpha);
+    triangleRenderer.setColor(brightness, alpha);
+}
+
+void ofxVboRenderer::setColor(float red, float green, float blue, float alpha) {
+    colorBuffer = ofFloatColor(red, green, blue, alpha);
+    circleRenderer.setColor(colorBuffer);
+    lineRenderer.setColor(colorBuffer);
+    triangleRenderer.setColor(colorBuffer);
 }
 
 void ofxVboRenderer::setColor(ofFloatColor c) {

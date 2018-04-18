@@ -29,9 +29,9 @@ public:
     void setup(float w, float h);
     void setScreenSize();
     void setScreenSize(float w, float h);
-    void setColor(float c);
-    void setLineWidth(float w);
+    void setColor(float brightness, float alpha = 1.0);
     void setColor(ofFloatColor c);
+    void setLineWidth(float w);
     void triangle(float x1, float y1, float x2, float y2, float x3, float y3, bool fill);
     void fillTriangle(float x1, float y1, float x2, float y2, float x3, float y3);
     void noFillTriangle(float x1, float y1, float x2, float y2, float x3, float y3);

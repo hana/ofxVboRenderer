@@ -38,8 +38,8 @@ void VboTriangleRenderer::setColor(ofFloatColor _color) {
     color = _color;
 }
 
-void VboTriangleRenderer::setColor(float c) {
-    color = ofFloatColor(c, c, c);
+void VboTriangleRenderer::setColor(float brightness, float alpha) {
+    color = ofFloatColor(brightness, alpha);
 }
 
 void VboTriangleRenderer::initVbo() {

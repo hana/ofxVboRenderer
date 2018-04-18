@@ -42,8 +42,8 @@ void VboCircleRenderer::setColor(ofFloatColor _color) {
     color = _color;
 }
 
-void VboCircleRenderer::setColor(float c) {
-    color = ofFloatColor(c, c, c);
+void VboCircleRenderer::setColor(float brightness, float alpha) {
+    color = ofFloatColor(brightness, alpha);
 }
 
 void VboCircleRenderer::initVbo() {
@@ -94,7 +94,7 @@ void VboCircleRenderer::filledCircle(float x, float y, float size) {
     
     //Set Center vertex
     ofVec2f center = ofVec2f(x * width, y * height);
-    addVertex(true, center);  //Add Center first
+    addVertex(true, center);
     addColor(true, color);
     
     float rad = 0;
@@ -103,7 +103,7 @@ void VboCircleRenderer::filledCircle(float x, float y, float size) {
         rad = oneStep * i;
         pos = getVertPos(x, y, rad, size);
         addVertex(true, pos);
-        //cout << "Vertex :" << pos << endl;
+        
         
         //Center Vertex
         addIndex(true, baseIndex);
@@ -156,9 +156,9 @@ void VboCircleRenderer::noFillCircle(float x, float y, float size) {
 
 ofVec2f VboCircleRenderer::getVertPos(float centerX, float centerY, float rad, float size) {
     
-//    float x = cos(rad) * size * width; //Get Circle track X
-//    float y = sin(rad) * size * width; //Get Circle track Y
-
+    //    float x = cos(rad) * size * width; //Get Circle track X
+    //    float y = sin(rad) * size * width; //Get Circle track Y
+    
     float x = cos(rad) * size * baseRad; //Get Circle track X
     float y = sin(rad) * size * baseRad; //Get Circle track Y
     
@@ -182,32 +182,32 @@ int VboCircleRenderer::getResolution(float size) {  //Set resolution depening on
 
 
 void VboCircleRenderer::addVertex(bool isFilled, ofVec2f pos) {
-    if(isFilled){
+    if(isFilled) {
         filledCirclePos[filledCounter.vertex] = pos;
         filledCounter.vertex++;
-    }else{
+    } else {
         noFillCirclePos[noFillCounter.vertex] = pos;
         noFillCounter.vertex++;
-
     }
+    
 }
 
 void VboCircleRenderer::addColor(bool isFilled, ofFloatColor color) {
-    if(isFilled){
+    if (isFilled) {
         filledCircleColors[filledCounter.color] = color;
         filledCounter.color++;
-    }else{
+    } else {
         noFillCircleColors[noFillCounter.color] = color;
         noFillCounter.color++;
     }
+    
 }
 
 void VboCircleRenderer::addIndex(bool isFilled, ofIndexType index) {
-    if(isFilled){
+    if (isFilled) {
         filledCircleIndices[filledCounter.index] = index;
         filledCounter.index++;
-
-    }else{
+    } else {
         noFillCircleIndices[noFillCounter.index] = index;
         noFillCounter.index++;
     }

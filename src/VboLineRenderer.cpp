@@ -37,8 +37,8 @@ void VboLineRenderer::setScreenSize(float w, float h) {
     height = h;
 }
 
-void VboLineRenderer::setColor(float c) {
-    color = ofFloatColor(c);
+void VboLineRenderer::setColor(float brightness, float alpha) {
+    color = ofFloatColor(brightness, alpha);
 }
 
 void VboLineRenderer::setColor(ofFloatColor c) {
@@ -87,19 +87,15 @@ void VboLineRenderer::line(float x1, float y1, float x2, float y2, float _thick)
 
 
 void VboLineRenderer::draw() {
+    //update vbo
     vbo.updateVertexData(vertices, vertsCount);
     vbo.updateColorData(colors, vertsCount);
     vbo.updateIndexData(indices, indicesCount);
     
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
-    glEnable(GL_LINE_SMOOTH);
-    glHint (GL_LINE_SMOOTH_HINT, GL_NICEST);
-   
-    
+    //draw
     vbo.drawElements(GL_TRIANGLES, indicesCount);
     
-    
+    //reset
     initCount();
 }
 
