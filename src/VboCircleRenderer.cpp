@@ -103,7 +103,7 @@ void VboCircleRenderer::filledCircle(float x, float y, float size) {
         rad = oneStep * i;
         pos = getVertPos(x, y, rad, size);
         addVertex(true, pos);
-
+        
         
         //Center Vertex
         addIndex(true, baseIndex);
@@ -156,9 +156,9 @@ void VboCircleRenderer::noFillCircle(float x, float y, float size) {
 
 ofVec2f VboCircleRenderer::getVertPos(float centerX, float centerY, float rad, float size) {
     
-//    float x = cos(rad) * size * width; //Get Circle track X
-//    float y = sin(rad) * size * width; //Get Circle track Y
-
+    //    float x = cos(rad) * size * width; //Get Circle track X
+    //    float y = sin(rad) * size * width; //Get Circle track Y
+    
     float x = cos(rad) * size * baseRad; //Get Circle track X
     float y = sin(rad) * size * baseRad; //Get Circle track Y
     

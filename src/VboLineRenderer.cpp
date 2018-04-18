@@ -91,7 +91,7 @@ void VboLineRenderer::draw() {
     vbo.updateVertexData(vertices, vertsCount);
     vbo.updateColorData(colors, vertsCount);
     vbo.updateIndexData(indices, indicesCount);
-
+    
     //draw
     vbo.drawElements(GL_TRIANGLES, indicesCount);
     

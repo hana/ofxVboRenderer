@@ -39,7 +39,7 @@ public:
     void filledCircle(float x, float y, float size);
     void noFillCircle(float x, float y, float size);
     
-
+    
     ofVec2f getVertPos(float centerX, float centerY, float rad, float size);
     
 private:
@@ -56,7 +56,7 @@ private:
     float width, height, lineWidth;
     ofFloatColor color;
     
-
+    
     
     //VBO
     vbo_count_t filledCounter;
