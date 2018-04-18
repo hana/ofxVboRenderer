@@ -12,6 +12,7 @@
 #include "ofMain.h"
 #include "VboCircleRenderer.hpp"
 #include "VboLineRenderer.hpp"
+#include "VboTriangleRenderer.hpp"
 
 class ofxVboRenderer {
 public:
@@ -26,11 +27,13 @@ public:
     void draw();
     void circle(float x, float y, float size, bool fill);
     void line(float x1, float y1, float x2, float y2, float _thick);
+    void triangle(float x1, float y1, float x2, float y2, float x3, float y3, bool fill);
     
 private:
     VboCircleRenderer circleRenderer;
     VboLineRenderer lineRenderer;
-    float width ,height;
+    VboTriangleRenderer triangleRenderer;
+    float width, height;
     ofFloatColor colorBuffer;
     
 };
