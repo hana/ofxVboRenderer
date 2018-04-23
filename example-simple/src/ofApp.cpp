@@ -14,6 +14,7 @@ void ofApp::setup(){
 void ofApp::update(){
     renderer.circle(0.2, 0.5, 0.1, true);   // x, y, size, fill
     renderer.line(0.8, 0.2, 0.8, 0.8, 0.01);    // x1, y1, x2, y2, thick
+    renderer.triangle(0.5, 0.5, 0.35, 0.8, 0.65, 0.8, true);
 }
 
 //--------------------------------------------------------------
