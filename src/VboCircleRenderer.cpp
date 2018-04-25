@@ -47,13 +47,13 @@ void VboCircleRenderer::setColor(float brightness, float alpha) {
 }
 
 void VboCircleRenderer::initVbo() {
-    filledCircleVbo.setVertexData(filledCirclePos, VERTICES_MAX, GL_DYNAMIC_DRAW);
-    filledCircleVbo.setIndexData(filledCircleIndices, VERTICES_MAX, GL_DYNAMIC_DRAW);
-    filledCircleVbo.setColorData(filledCircleColors, VERTICES_MAX, GL_DYNAMIC_DRAW);
+    filledCircleVbo.setVertexData(filledCirclePos, VBOCIRCLE_VERTICES_MAX, GL_DYNAMIC_DRAW);
+    filledCircleVbo.setIndexData(filledCircleIndices, VBOCIRCLE_VERTICES_MAX, GL_DYNAMIC_DRAW);
+    filledCircleVbo.setColorData(filledCircleColors, VBOCIRCLE_VERTICES_MAX, GL_DYNAMIC_DRAW);
     
-    noFillCircleVbo.setVertexData(noFillCirclePos, VERTICES_MAX, GL_DYNAMIC_DRAW);
-    noFillCircleVbo.setIndexData(noFillCircleIndices, VERTICES_MAX, GL_DYNAMIC_DRAW);
-    noFillCircleVbo.setColorData(noFillCircleColors, VERTICES_MAX, GL_DYNAMIC_DRAW);
+    noFillCircleVbo.setVertexData(noFillCirclePos, VBOCIRCLE_VERTICES_MAX, GL_DYNAMIC_DRAW);
+    noFillCircleVbo.setIndexData(noFillCircleIndices, VBOCIRCLE_VERTICES_MAX, GL_DYNAMIC_DRAW);
+    noFillCircleVbo.setColorData(noFillCircleColors, VBOCIRCLE_VERTICES_MAX, GL_DYNAMIC_DRAW);
 }
 
 void VboCircleRenderer::setBaseRad(int _baseRad) {

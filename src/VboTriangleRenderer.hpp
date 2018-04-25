@@ -33,7 +33,10 @@ public:
     void setColor(ofFloatColor c);
     void setLineWidth(float w);
     void triangle(float x1, float y1, float x2, float y2, float x3, float y3, bool fill);
+    void triangle(float x, float y, float size, float angle, bool fill);
+    void filledTriangle(ofVec2f p1,ofVec2f p2, ofVec2f p3);
     void fillTriangle(float x1, float y1, float x2, float y2, float x3, float y3);
+    void noFilledTriangle(ofVec2f p1,ofVec2f p2, ofVec2f p3);
     void noFillTriangle(float x1, float y1, float x2, float y2, float x3, float y3);
     
     
@@ -50,7 +53,8 @@ private:
     float width, height, lineWidth;
     ofFloatColor color;
     
-    
+    //Variables for calculation 
+    ofVec2f top, left, right, center, normalizedTop, normalizedLeft, normalizedRight;
     
     //VBO
     vbo_triangle_count_t filledCounter;

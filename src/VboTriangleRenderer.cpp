@@ -8,6 +8,10 @@
 
 #include "VboTriangleRenderer.hpp"
 
+constexpr double ROOT_3 = 1.73205;
+constexpr double ROOT_3_DIV_3 = 0.57735;
+constexpr double ROOT_3_DIV_6 = 0.288675;
+
 VboTriangleRenderer::VboTriangleRenderer() {
     lineWidth = 4.0;
 }
@@ -77,6 +81,49 @@ void VboTriangleRenderer::triangle(float x1, float y1, float x2, float y2, float
     }
 }
 
+void VboTriangleRenderer::triangle(float x, float y, float size, float angle, bool fill) {
+    //Prepare Variables
+    float scaledSize = width * size;
+    
+    //Culcrate relative pos on each vert from size
+    center.set(x * width, y * height);
+    normalizedTop.set(0, -ROOT_3_DIV_3);
+    normalizedLeft.set(-0.5, ROOT_3_DIV_6);
+    normalizedRight.set(0.5, ROOT_3_DIV_6);
+    
+    //Rotate
+    normalizedTop.rotate(360 * angle);
+    normalizedLeft.rotate(360 * angle);
+    normalizedRight.rotate(360 * angle);
+    
+    //Get absolute pos on each vertex
+    top = normalizedTop * scaledSize + center;
+    left = normalizedLeft * scaledSize + center;
+    right = normalizedRight * scaledSize + center;
+    
+    if (fill) {
+        filledTriangle(top, left, right);
+    } else {
+        noFilledTriangle(top, left, right);
+    }
+
+}
+
+void VboTriangleRenderer::filledTriangle(ofVec2f p1, ofVec2f p2, ofVec2f p3) {
+    
+    addVertex(true, p1);
+    addIndex(true, filledCounter.index);
+    addColor(true, color);
+    
+    addVertex(true, p2);
+    addIndex(true, filledCounter.index);
+    addColor(true, color);
+    
+    addVertex(true, p3);
+    addIndex(true, filledCounter.index);
+    addColor(true, color);
+
+}
 
 void VboTriangleRenderer::fillTriangle(float x1, float y1, float x2, float y2, float x3, float y3) {
     
@@ -89,6 +136,26 @@ void VboTriangleRenderer::fillTriangle(float x1, float y1, float x2, float y2, f
     }
 }
 
+void VboTriangleRenderer::noFilledTriangle(ofVec2f p1, ofVec2f p2, ofVec2f p3)  {
+    addVertex(false, p1);
+    addColor(false, color);
+    
+    addVertex(false, p2);
+    addColor(false, color);
+    
+    addVertex(false, p3);
+    addColor(false, color);
+    
+    
+    int vertIDBegin = noFillCounter.vertex;
+    
+    addIndex(false, vertIDBegin);
+    addIndex(false, vertIDBegin+1);
+    addIndex(false, vertIDBegin+1);
+    addIndex(false, vertIDBegin+2);
+    addIndex(false, vertIDBegin+2);
+    addIndex(false, vertIDBegin);
+}
 
 void VboTriangleRenderer::noFillTriangle(float x1, float y1, float x2, float y2, float x3, float y3) {
     

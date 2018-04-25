@@ -18,10 +18,9 @@ struct vbo_count_t {
     int index = 0;
 };
 
-static constexpr int CIRCLE_NUM_PER_AG = 64;
 static constexpr int CIRCLE_NUM_MAX = 1024;
 static constexpr int RESOLUTION_MAX = 120;
-static constexpr int VERTICES_MAX = CIRCLE_NUM_MAX * RESOLUTION_MAX;
+static constexpr int VBOCIRCLE_VERTICES_MAX = CIRCLE_NUM_MAX * RESOLUTION_MAX;
 
 class VboCircleRenderer {
 public:
@@ -61,15 +60,15 @@ private:
     //VBO
     vbo_count_t filledCounter;
     ofVbo filledCircleVbo;
-    ofVec2f filledCirclePos[VERTICES_MAX];
-    ofFloatColor filledCircleColors[VERTICES_MAX];
-    ofIndexType filledCircleIndices[VERTICES_MAX];
+    ofVec2f filledCirclePos[VBOCIRCLE_VERTICES_MAX];
+    ofFloatColor filledCircleColors[VBOCIRCLE_VERTICES_MAX];
+    ofIndexType filledCircleIndices[VBOCIRCLE_VERTICES_MAX];
     
     vbo_count_t noFillCounter;
     ofVbo noFillCircleVbo;
-    ofVec2f noFillCirclePos[VERTICES_MAX];
-    ofFloatColor noFillCircleColors[VERTICES_MAX];
-    ofIndexType noFillCircleIndices[VERTICES_MAX];
+    ofVec2f noFillCirclePos[VBOCIRCLE_VERTICES_MAX];
+    ofFloatColor noFillCircleColors[VBOCIRCLE_VERTICES_MAX];
+    ofIndexType noFillCircleIndices[VBOCIRCLE_VERTICES_MAX];
     
 };
 

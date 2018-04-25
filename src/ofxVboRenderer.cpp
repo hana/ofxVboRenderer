@@ -75,6 +75,10 @@ void ofxVboRenderer::line(float x1, float y1, float x2, float y2, float _thick) 
     lineRenderer.line(x1, y1, x2, y2, _thick);
 }
 
+void ofxVboRenderer::triangle(float x, float y, float size, float angle, bool fill)  {
+    triangleRenderer.triangle(x, y, size, angle, fill);
+}
+
 void ofxVboRenderer::triangle(float x1, float y1, float x2, float y2, float x3, float y3, bool fill){
     triangleRenderer.triangle(x1, y1, x2, y2, x3, y3, fill);
 }

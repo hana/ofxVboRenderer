@@ -23,6 +23,7 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
     
     ofxVboRenderer renderer;
+    float angle;
     
 		
 };

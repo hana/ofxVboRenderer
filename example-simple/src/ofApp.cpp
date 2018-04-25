@@ -8,13 +8,20 @@ void ofApp::setup(){
     
     renderer.setup();
     renderer.setColor(1.0);
+    angle = 0;
+    
+    cout << sqrt(3.0) << endl;
+    cout << sqrt(3.0) / 3<< endl;
+    cout << sqrt(3.0) / 6<< endl;
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
     renderer.circle(0.2, 0.5, 0.1, true);   // x, y, size, fill
     renderer.line(0.8, 0.2, 0.8, 0.8, 0.01);    // x1, y1, x2, y2, thick
-    renderer.triangle(0.5, 0.5, 0.35, 0.8, 0.65, 0.8, true);
+    renderer.triangle(0.5, 0.5, 0.1, angle, true);
+    angle += 0.01;
 }
 
 //--------------------------------------------------------------
