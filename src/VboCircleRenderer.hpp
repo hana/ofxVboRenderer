@@ -10,18 +10,11 @@
 #define VboCircleRenderer_hpp
 
 #include "ofMain.h"
+#include "config.h"
 
-struct vbo_count_t {
-    int num;
-    int vertex = 0;
-    int color = 0;
-    int index = 0;
-};
 
-static constexpr int CIRCLE_NUM_PER_AG = 64;
-static constexpr int CIRCLE_NUM_MAX = 1024;
-static constexpr int RESOLUTION_MAX = 120;
-static constexpr int VERTICES_MAX = CIRCLE_NUM_MAX * RESOLUTION_MAX;
+constexpr int RESOLUTION_MAX = 120;
+constexpr int VBOCIRCLE_VERTICES_MAX = VBOCIRCLE_NUM_MAX * RESOLUTION_MAX;
 
 class VboCircleRenderer {
 public:
@@ -33,26 +26,31 @@ public:
     void setColor(ofFloatColor _color);
     void setColor(float brightness, float alpha = 1.0);
     void setLineWidth(float w);
-    void setBaseRad(int _baseRad);
+    inline void setBaseDiameter(int _baseDiameter) {
+        baseDiameter = _baseDiameter;
+    }
     void draw();
-    void circle(float x, float y, float size, bool fill);
-    void filledCircle(float x, float y, float size);
-    void noFillCircle(float x, float y, float size);
+    void circle(float x, float y, float diameter, bool fill);
+    void filled(float x, float y, float diameter);
+    void noFill(float x, float y, float diameter);
     
     
-    ofVec2f getVertPos(float centerX, float centerY, float rad, float size);
+    ofVec2f getVertPos(float centerX, float centerY, float rad, float diameter);
     
 private:
     void initVbo();
     
     int getResolution(float size);
     
-    void addVertex(bool isFilled, ofVec2f pos);
-    void addIndex(bool isFilled, ofIndexType index);
-    void addColor(bool isFilled, ofFloatColor color);
+    [[deprecated]]void addVertex(bool isFilled, ofVec2f pos);
+    void addVertex(ofVec2f pos, bool isFilled);
+    [[deprecated]]void addIndex(bool isFilled, ofIndexType index);
+    void addIndex(ofIndexType index, bool isFilled);
+    [[deprecated]]void addColor(bool isFilled, ofFloatColor color);
+    void addColor(ofFloatColor color, bool isFilled);
     void resetCounter();
     
-    int baseRad;
+    int baseDiameter;
     float width, height, lineWidth;
     ofFloatColor color;
     
@@ -60,16 +58,16 @@ private:
     
     //VBO
     vbo_count_t filledCounter;
-    ofVbo filledCircleVbo;
-    ofVec2f filledCirclePos[VERTICES_MAX];
-    ofFloatColor filledCircleColors[VERTICES_MAX];
-    ofIndexType filledCircleIndices[VERTICES_MAX];
+    ofVbo filledVbo;
+    ofVec2f filledPos[VBOCIRCLE_VERTICES_MAX];
+    ofFloatColor filledColors[VBOCIRCLE_VERTICES_MAX];
+    ofIndexType filledIndices[VBOCIRCLE_VERTICES_MAX];
     
     vbo_count_t noFillCounter;
-    ofVbo noFillCircleVbo;
-    ofVec2f noFillCirclePos[VERTICES_MAX];
-    ofFloatColor noFillCircleColors[VERTICES_MAX];
-    ofIndexType noFillCircleIndices[VERTICES_MAX];
+    ofVbo noFillVbo;
+    ofVec2f noFillPos[VBOCIRCLE_VERTICES_MAX];
+    ofFloatColor noFillColors[VBOCIRCLE_VERTICES_MAX];
+    ofIndexType noFillIndices[VBOCIRCLE_VERTICES_MAX];
     
 };
 

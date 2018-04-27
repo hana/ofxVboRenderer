@@ -10,8 +10,8 @@
 #define VboLineRenderer_hpp
 
 #include "ofMain.h"
+#include "config.h"
 
-constexpr int VBOLINE_NUM_MAX = 1024;
 constexpr int VBOLINE_VERTS_MAX = VBOLINE_NUM_MAX * 4;
 constexpr int VBOLINE_INDICES_MAX = VBOLINE_NUM_MAX * 6;
 
@@ -33,6 +33,7 @@ private:
     void initVbo();
     void initCount();
     void addVertex(ofVec2f pos);
+    void addIndex(ofIndexType index);
     void addIndex(int index);
     void addLineIndices();
     ofVec2f getPosition(float x, float y);

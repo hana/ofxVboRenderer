@@ -110,6 +110,11 @@ void VboLineRenderer::addIndex(int index) {
     indicesCount++;
 }
 
+void VboLineRenderer::addIndex(ofIndexType index) {
+    indices[indicesCount] = index;
+    indicesCount++;
+}
+
 void VboLineRenderer::addLineIndices() {
     int vertIDBegin = (lineCount-1) * 4;
     
