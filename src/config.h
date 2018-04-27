@@ -16,7 +16,8 @@ struct vbo_count_t {
     int index = 0;
 };
 
-constexpr int VBOCIRCLE_NUM_MAX = 1024;
+constexpr int VBOLINE_NUM_MAX = 512;
+constexpr int VBOCIRCLE_NUM_MAX = 512;
 constexpr int VBOTRIANGLE_NUM_MAX = 512;
 constexpr int RECTANGLE_NUM_MAX = 512;
 
