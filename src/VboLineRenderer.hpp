@@ -33,6 +33,7 @@ private:
     void initVbo();
     void initCount();
     void addVertex(ofVec2f pos);
+    void addIndex(ofIndexType index);
     void addIndex(int index);
     void addLineIndices();
     ofVec2f getPosition(float x, float y);

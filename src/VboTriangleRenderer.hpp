@@ -10,15 +10,9 @@
 #define VboTriangleRenderer_hpp
 
 #include "ofMain.h"
+#include "config.h"
 
-struct vbo_triangle_count_t {
-    int num;
-    int vertex = 0;
-    int color = 0;
-    int index = 0;
-};
 
-constexpr int VBOTRIANGLE_NUM_MAX = 1024;
 constexpr int VBOTRIGANGLE_VERTS_MAX = VBOTRIANGLE_NUM_MAX * 3;
 constexpr int VBOTRIANGLE_INDICES_MAX = VBOTRIANGLE_NUM_MAX * 6;
 
@@ -31,7 +25,7 @@ public:
     void setScreenSize(float w, float h);
     void setColor(float brightness, float alpha = 1.0);
     void setColor(ofFloatColor c);
-    void setLineWidth(float w);
+    
     void triangle(float x1, float y1, float x2, float y2, float x3, float y3, bool fill);
     void triangle(float x, float y, float size, float angle, bool fill);
     void filledTriangle(ofVec2f p1,ofVec2f p2, ofVec2f p3);
@@ -57,13 +51,13 @@ private:
     ofVec2f top, left, right, center, normalizedTop, normalizedLeft, normalizedRight;
     
     //VBO
-    vbo_triangle_count_t filledCounter;
+    vbo_count_t filledCounter;
     ofVbo filledTriangleVbo;
     ofVec2f filledTrianglePos[VBOTRIGANGLE_VERTS_MAX];
     ofFloatColor filledTriangleColors[VBOTRIGANGLE_VERTS_MAX];
     ofIndexType filledTriangleIndices[VBOTRIGANGLE_VERTS_MAX];
     
-    vbo_triangle_count_t noFillCounter;
+    vbo_count_t noFillCounter;
     ofVbo noFillTriangleVbo;
     ofVec2f noFillTrianglePos[VBOTRIGANGLE_VERTS_MAX];
     ofFloatColor noFillTriangleColors[VBOTRIGANGLE_VERTS_MAX];

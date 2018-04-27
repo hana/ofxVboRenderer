@@ -16,14 +16,14 @@ VboCircleRenderer::VboCircleRenderer() {
 
 void VboCircleRenderer::setup() {
     setScreenSize();
-    baseRad = width;
+    baseDiameter = width;
     
     initVbo();
 }
 
 void VboCircleRenderer::setup(float w, float h) {
     setScreenSize(w, h);
-    baseRad = width;
+    baseDiameter = width;
     
     initVbo();
 }
@@ -47,48 +47,45 @@ void VboCircleRenderer::setColor(float brightness, float alpha) {
 }
 
 void VboCircleRenderer::initVbo() {
-    filledCircleVbo.setVertexData(filledCirclePos, VBOCIRCLE_VERTICES_MAX, GL_DYNAMIC_DRAW);
-    filledCircleVbo.setIndexData(filledCircleIndices, VBOCIRCLE_VERTICES_MAX, GL_DYNAMIC_DRAW);
-    filledCircleVbo.setColorData(filledCircleColors, VBOCIRCLE_VERTICES_MAX, GL_DYNAMIC_DRAW);
+    filledVbo.setVertexData(filledPos, VBOCIRCLE_VERTICES_MAX, GL_DYNAMIC_DRAW);
+    filledVbo.setIndexData(filledIndices, VBOCIRCLE_VERTICES_MAX, GL_DYNAMIC_DRAW);
+    filledVbo.setColorData(filledColors, VBOCIRCLE_VERTICES_MAX, GL_DYNAMIC_DRAW);
     
-    noFillCircleVbo.setVertexData(noFillCirclePos, VBOCIRCLE_VERTICES_MAX, GL_DYNAMIC_DRAW);
-    noFillCircleVbo.setIndexData(noFillCircleIndices, VBOCIRCLE_VERTICES_MAX, GL_DYNAMIC_DRAW);
-    noFillCircleVbo.setColorData(noFillCircleColors, VBOCIRCLE_VERTICES_MAX, GL_DYNAMIC_DRAW);
+    noFillVbo.setVertexData(noFillPos, VBOCIRCLE_VERTICES_MAX, GL_DYNAMIC_DRAW);
+    noFillVbo.setIndexData(noFillIndices, VBOCIRCLE_VERTICES_MAX, GL_DYNAMIC_DRAW);
+    noFillVbo.setColorData(noFillColors, VBOCIRCLE_VERTICES_MAX, GL_DYNAMIC_DRAW);
 }
 
-void VboCircleRenderer::setBaseRad(int _baseRad) {
-    baseRad = _baseRad;
-}
 
 void VboCircleRenderer::draw() {
-    filledCircleVbo.updateVertexData(filledCirclePos, filledCounter.vertex);
-    filledCircleVbo.updateIndexData(filledCircleIndices, filledCounter.index);
-    filledCircleVbo.updateColorData(filledCircleColors, filledCounter.color);
+    filledVbo.updateVertexData(filledPos, filledCounter.vertex);
+    filledVbo.updateIndexData(filledIndices, filledCounter.index);
+    filledVbo.updateColorData(filledColors, filledCounter.color);
     
-    filledCircleVbo.drawElements(GL_TRIANGLES ,  filledCounter.index);
+    filledVbo.drawElements(GL_TRIANGLES ,  filledCounter.index);
     
     glLineWidth(lineWidth);
-    noFillCircleVbo.updateVertexData(noFillCirclePos, noFillCounter.vertex);
-    noFillCircleVbo.updateIndexData(noFillCircleIndices, noFillCounter.index);
-    noFillCircleVbo.updateColorData(noFillCircleColors, noFillCounter.color);
+    noFillVbo.updateVertexData(noFillPos, noFillCounter.vertex);
+    noFillVbo.updateIndexData(noFillIndices, noFillCounter.index);
+    noFillVbo.updateColorData(noFillColors, noFillCounter.color);
     
-    noFillCircleVbo.drawElements(GL_LINES, noFillCounter.index);
+    noFillVbo.drawElements(GL_LINES, noFillCounter.index);
     
     resetCounter();
 }
 
-void VboCircleRenderer::circle(float x, float y, float size, bool fill) {
+void VboCircleRenderer::circle(float x, float y, float diameter, bool fill) {
     if(fill) {
-        filledCircle(x, y, size);
+        filled(x, y, diameter);
     } else {
-        noFillCircle(x, y, size);
+        noFill(x, y, diameter);
     }
 }
 
 
-void VboCircleRenderer::filledCircle(float x, float y, float size) {
+void VboCircleRenderer::filled(float x, float y, float diameter) {
     
-    int res = getResolution(size);
+    int res = getResolution(diameter);
     float oneStep = M_2XPI / res;
     int baseIndex = filledCounter.vertex;
     
@@ -101,7 +98,7 @@ void VboCircleRenderer::filledCircle(float x, float y, float size) {
     ofVec2f pos;
     for(int i = 0; i < res; i++) {
         rad = oneStep * i;
-        pos = getVertPos(x, y, rad, size);
+        pos = getVertPos(x, y, rad, diameter);
         addVertex(true, pos);
         
         
@@ -125,8 +122,8 @@ void VboCircleRenderer::filledCircle(float x, float y, float size) {
 }
 
 
-void VboCircleRenderer::noFillCircle(float x, float y, float size) {
-    int res = getResolution(size);
+void VboCircleRenderer::noFill(float x, float y, float diameter) {
+    int res = getResolution(diameter);
     
     float oneStep = M_2XPI / res;
     int baseIndex = noFillCounter.vertex;
@@ -135,12 +132,12 @@ void VboCircleRenderer::noFillCircle(float x, float y, float size) {
     ofVec2f pos;
     for(int i = 0; i < res; i++) {
         rad = oneStep * i;
-        pos = getVertPos(x, y, rad, size);
-        addVertex(false, pos); //put into base index
+        pos = getVertPos(x, y, rad, diameter);
+        addVertex(pos, false); //put into base index
         
         //This Vertex
-        addIndex(false, baseIndex + i);
-        addColor(false, color);
+        addIndex(baseIndex + i, false);
+        addColor(color, false);
         
         //Second
         if(i == (res - 1)) {
@@ -154,13 +151,13 @@ void VboCircleRenderer::noFillCircle(float x, float y, float size) {
 }
 
 
-ofVec2f VboCircleRenderer::getVertPos(float centerX, float centerY, float rad, float size) {
+ofVec2f VboCircleRenderer::getVertPos(float centerX, float centerY, float rad, float diameter) {
     
     //    float x = cos(rad) * size * width; //Get Circle track X
     //    float y = sin(rad) * size * width; //Get Circle track Y
     
-    float x = cos(rad) * size * baseRad; //Get Circle track X
-    float y = sin(rad) * size * baseRad; //Get Circle track Y
+    float x = cos(rad) * diameter * baseDiameter * 0.5; //Get Circle track X
+    float y = sin(rad) * diameter * baseDiameter * 0.5; //Get Circle track Y
     
     float px = centerX * width + x;     //Get position X
     float py = centerY * height + y;    //Get position
@@ -183,10 +180,10 @@ int VboCircleRenderer::getResolution(float size) {  //Set resolution depening on
 
 void VboCircleRenderer::addVertex(bool isFilled, ofVec2f pos) {
     if(isFilled) {
-        filledCirclePos[filledCounter.vertex] = pos;
+        filledPos[filledCounter.vertex] = pos;
         filledCounter.vertex++;
     } else {
-        noFillCirclePos[noFillCounter.vertex] = pos;
+        noFillPos[noFillCounter.vertex] = pos;
         noFillCounter.vertex++;
     }
     
@@ -194,10 +191,10 @@ void VboCircleRenderer::addVertex(bool isFilled, ofVec2f pos) {
 
 void VboCircleRenderer::addColor(bool isFilled, ofFloatColor color) {
     if (isFilled) {
-        filledCircleColors[filledCounter.color] = color;
+        filledColors[filledCounter.color] = color;
         filledCounter.color++;
     } else {
-        noFillCircleColors[noFillCounter.color] = color;
+        noFillColors[noFillCounter.color] = color;
         noFillCounter.color++;
     }
     
@@ -205,10 +202,43 @@ void VboCircleRenderer::addColor(bool isFilled, ofFloatColor color) {
 
 void VboCircleRenderer::addIndex(bool isFilled, ofIndexType index) {
     if (isFilled) {
-        filledCircleIndices[filledCounter.index] = index;
+        filledIndices[filledCounter.index] = index;
         filledCounter.index++;
     } else {
-        noFillCircleIndices[noFillCounter.index] = index;
+        noFillIndices[noFillCounter.index] = index;
+        noFillCounter.index++;
+    }
+}
+
+//
+void VboCircleRenderer::addVertex(ofVec2f pos, bool isFilled) {
+    if(isFilled) {
+        filledPos[filledCounter.vertex] = pos;
+        filledCounter.vertex++;
+    } else {
+        noFillPos[noFillCounter.vertex] = pos;
+        noFillCounter.vertex++;
+    }
+    
+}
+
+void VboCircleRenderer::addColor(ofFloatColor color, bool isFilled) {
+    if (isFilled) {
+        filledColors[filledCounter.color] = color;
+        filledCounter.color++;
+    } else {
+        noFillColors[noFillCounter.color] = color;
+        noFillCounter.color++;
+    }
+    
+}
+
+void VboCircleRenderer::addIndex(ofIndexType index, bool isFilled) {
+    if (isFilled) {
+        filledIndices[filledCounter.index] = index;
+        filledCounter.index++;
+    } else {
+        noFillIndices[noFillCounter.index] = index;
         noFillCounter.index++;
     }
 }
