@@ -13,8 +13,8 @@
 #include "config.h"
 
 constexpr int RECTANGLE_VERTS_NUM = 4;
-constexpr int VBORECTANGLE_VERTS_MAX = RECTANGLE_NUM_MAX * 4;
-constexpr int VBORECTANGLE_INDICES_MAX = RECTANGLE_NUM_MAX * 8;
+constexpr int VBORECTANGLE_VERTS_MAX = VBORECTANGLE_NUM_MAX * 4;
+constexpr int VBORECTANGLE_INDICES_MAX = VBORECTANGLE_NUM_MAX * 8;
 
 class VboRectangleRenderer {
 public:

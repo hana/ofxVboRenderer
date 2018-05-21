@@ -46,8 +46,8 @@ private:
     void addVertex(ofVec2f pos, bool isFilled);
     [[deprecated]]void addIndex(bool isFilled, ofIndexType index);
     void addIndex(ofIndexType index, bool isFilled);
-    [[deprecated]]void addColor(bool isFilled, ofFloatColor color);
-    void addColor(ofFloatColor color, bool isFilled);
+    [[deprecated]]void addColor(bool isFilled, ofFloatColor _color);
+    void addColor(ofFloatColor _color, bool isFilled);
     void resetCounter();
     
     int baseDiameter;

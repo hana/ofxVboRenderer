@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "ofxVboRenderer.hpp"
 
+
 class ofApp : public ofBaseApp{
 
 	public:
@@ -24,6 +25,7 @@ class ofApp : public ofBaseApp{
     
     ofxVboRenderer renderer;
     float angle;
+    
     
 		
 };

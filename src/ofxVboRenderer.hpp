@@ -14,6 +14,7 @@
 #include "VboLineRenderer.hpp"
 #include "VboTriangleRenderer.hpp"
 #include "VboRectangleRenderer.hpp"
+#include "VboArcRenderer.hpp"
 
 class ofxVboRenderer {
 public:
@@ -34,12 +35,15 @@ public:
     void square(ofVec2f pos, float size, float angle, bool fill);
     void rect(float x1, float y1, float x2, float y2, float  angle, bool fill);
     void rect(ofVec2f pos, float w, float h, float angle, bool fill);
+    void arc(float x1, float y1, float x2, float y2, float arcHeight, float expose, float thick);
     
 private:
     VboCircleRenderer circleRenderer;
     VboLineRenderer lineRenderer;
     VboTriangleRenderer triangleRenderer;
     VboRectangleRenderer rectangleRenderer;
+    VboArcRenderer arcRenderer;
+    
     float width, height;
     ofFloatColor colorBuffer;
     
