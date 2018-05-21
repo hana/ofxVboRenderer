@@ -19,6 +19,7 @@ struct vbo_count_t {
 constexpr int VBOLINE_NUM_MAX = 512;
 constexpr int VBOCIRCLE_NUM_MAX = 512;
 constexpr int VBOTRIANGLE_NUM_MAX = 512;
-constexpr int RECTANGLE_NUM_MAX = 512;
+constexpr int VBORECTANGLE_NUM_MAX = 512;
+constexpr int VBOARC_NUM_MAX = 512;
 
 #endif /* config_h */

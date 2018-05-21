@@ -62,7 +62,7 @@ void VboCircleRenderer::draw() {
     filledVbo.updateIndexData(filledIndices, filledCounter.index);
     filledVbo.updateColorData(filledColors, filledCounter.color);
     
-    filledVbo.drawElements(GL_TRIANGLES ,  filledCounter.index);
+    filledVbo.drawElements(GL_TRIANGLES, filledCounter.index);
     
     glLineWidth(lineWidth);
     noFillVbo.updateVertexData(noFillPos, noFillCounter.vertex);
@@ -189,12 +189,12 @@ void VboCircleRenderer::addVertex(bool isFilled, ofVec2f pos) {
     
 }
 
-void VboCircleRenderer::addColor(bool isFilled, ofFloatColor color) {
+void VboCircleRenderer::addColor(bool isFilled, ofFloatColor _color) {
     if (isFilled) {
-        filledColors[filledCounter.color] = color;
+        filledColors[filledCounter.color] = _color;
         filledCounter.color++;
     } else {
-        noFillColors[noFillCounter.color] = color;
+        noFillColors[noFillCounter.color] = _color;
         noFillCounter.color++;
     }
     
@@ -222,12 +222,12 @@ void VboCircleRenderer::addVertex(ofVec2f pos, bool isFilled) {
     
 }
 
-void VboCircleRenderer::addColor(ofFloatColor color, bool isFilled) {
+void VboCircleRenderer::addColor(ofFloatColor _color, bool isFilled) {
     if (isFilled) {
-        filledColors[filledCounter.color] = color;
+        filledColors[filledCounter.color] = _color;
         filledCounter.color++;
     } else {
-        noFillColors[noFillCounter.color] = color;
+        noFillColors[noFillCounter.color] = _color;
         noFillCounter.color++;
     }
     

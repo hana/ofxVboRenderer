@@ -9,6 +9,7 @@ void ofApp::setup(){
     renderer.setup();
     renderer.setColor(1.0);
     angle = 0;
+    
 }
 
 //--------------------------------------------------------------
@@ -26,7 +27,18 @@ void ofApp::update(){
     renderer.rect(pos, 0.1, 0.05, angle, true);  //center, width, height, fill
 //    renderer.rect(0.35, 0.8, 0.4, 0.9, angle, false);   //x1, y1, x2, y2, angle, fill
     
+    renderer.setColor(1.0);
+    renderer.arc(0.2, 0.5 , 0.8, 0.5, 0.3, angle, 1.0);
+
+
+        
     angle += 0.01;
+
+    if(1.0 < angle) {
+        angle = 0.0;
+    }
+    
+
 }
 
 //--------------------------------------------------------------
