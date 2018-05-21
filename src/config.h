@@ -21,5 +21,6 @@ constexpr int VBOCIRCLE_NUM_MAX = 512;
 constexpr int VBOTRIANGLE_NUM_MAX = 512;
 constexpr int VBORECTANGLE_NUM_MAX = 512;
 constexpr int VBOARC_NUM_MAX = 512;
+constexpr int VBOWAVE_NUM_MAX = 512;
 
 #endif /* config_h */

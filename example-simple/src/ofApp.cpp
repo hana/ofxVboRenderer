@@ -30,7 +30,8 @@ void ofApp::update(){
     renderer.setColor(1.0);
     renderer.arc(0.2, 0.5 , 0.8, 0.5, 0.3, angle, 1.0);
 
-
+    renderer.wave(0.2, 0.6, 0.8, 0.6, angle * 100, 0.02, angle, 1.0);
+    
         
     angle += 0.01;
 

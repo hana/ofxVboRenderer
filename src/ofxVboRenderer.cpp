@@ -14,6 +14,7 @@ void ofxVboRenderer::setup() {
     triangleRenderer.setup();
     rectangleRenderer.setup();
     arcRenderer.setup();
+    waveRenderer.setup();
 }
 
 void ofxVboRenderer::setup(float w, float h) {
@@ -22,6 +23,7 @@ void ofxVboRenderer::setup(float w, float h) {
     triangleRenderer.setup(w, h);
     rectangleRenderer.setup(w, h);
     arcRenderer.setup(w, h);
+    waveRenderer.setup(w, h);
 }
 
 
@@ -31,6 +33,7 @@ void ofxVboRenderer::setScreenSize() {
     triangleRenderer.setScreenSize();
     rectangleRenderer.setScreenSize();
     arcRenderer.setScreenSize();
+    waveRenderer.setScreenSize();
 }
 
 void ofxVboRenderer::setScreenSize(float w, float h) {
@@ -39,6 +42,7 @@ void ofxVboRenderer::setScreenSize(float w, float h) {
     triangleRenderer.setScreenSize(w, h);
     rectangleRenderer.setScreenSize(w, h);
     arcRenderer.setScreenSize(w, h);
+    waveRenderer.setup(w, h);
 }
 
 void ofxVboRenderer::setColor(float brightness, float alpha) {
@@ -47,6 +51,7 @@ void ofxVboRenderer::setColor(float brightness, float alpha) {
     triangleRenderer.setColor(brightness, alpha);
     rectangleRenderer.setColor(brightness, alpha);
     arcRenderer.setColor(brightness, alpha);
+    waveRenderer.setColor(brightness, alpha);
 }
 
 void ofxVboRenderer::setColor(float red, float green, float blue, float alpha) {
@@ -56,6 +61,7 @@ void ofxVboRenderer::setColor(float red, float green, float blue, float alpha) {
     triangleRenderer.setColor(colorBuffer);
     rectangleRenderer.setColor(colorBuffer);
     arcRenderer.setColor(colorBuffer);
+    waveRenderer.setColor(colorBuffer);
 }
 
 void ofxVboRenderer::setColor(ofFloatColor c) {
@@ -64,6 +70,7 @@ void ofxVboRenderer::setColor(ofFloatColor c) {
     triangleRenderer.setColor(c);
     rectangleRenderer.setColor(c);
     arcRenderer.setColor(c);
+    waveRenderer.setColor(c);
 }
 
 
@@ -78,6 +85,7 @@ void ofxVboRenderer::draw() {
     triangleRenderer.draw();
     rectangleRenderer.draw();
     arcRenderer.draw();
+    waveRenderer.draw();
 }
 
 void ofxVboRenderer::circle(float x, float y, float diameter, bool fill) {
@@ -110,4 +118,8 @@ void ofxVboRenderer::rect(ofVec2f pos, float w, float h, float angle, bool fill)
 
 void ofxVboRenderer::arc(float x1, float y1, float x2, float y2, float arcHeight, float expose, float thick) {
     arcRenderer.arc(x1, y1, x2, y2, arcHeight, expose, thick);
+}
+
+void ofxVboRenderer::wave(float x1, float y1, float x2, float y2, float freq, float amplitude, float phase, float thick) {
+    waveRenderer.wave(x1, y1, x2, y2, freq, amplitude, phase, thick);
 }
