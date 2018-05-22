@@ -15,6 +15,7 @@
 #include "VboTriangleRenderer.hpp"
 #include "VboRectangleRenderer.hpp"
 #include "VboArcRenderer.hpp"
+#include "VboWaveRenderer.hpp"
 
 class ofxVboRenderer {
 public:
@@ -36,6 +37,7 @@ public:
     void rect(float x1, float y1, float x2, float y2, float  angle, bool fill);
     void rect(ofVec2f pos, float w, float h, float angle, bool fill);
     void arc(float x1, float y1, float x2, float y2, float arcHeight, float expose, float thick);
+    void wave(float x1, float y1, float x2, float y2, float freq, float amplitude, float phase, float thick);
     
 private:
     VboCircleRenderer circleRenderer;
@@ -43,6 +45,7 @@ private:
     VboTriangleRenderer triangleRenderer;
     VboRectangleRenderer rectangleRenderer;
     VboArcRenderer arcRenderer;
+    VboWaveRenderer waveRenderer;
     
     float width, height;
     ofFloatColor colorBuffer;
