@@ -28,9 +28,11 @@ void ofApp::update(){
 //    renderer.rect(0.35, 0.8, 0.4, 0.9, angle, false);   //x1, y1, x2, y2, angle, fill
     
     renderer.setColor(1.0);
-    renderer.arc(0.2, 0.5 , 0.8, 0.5, 0.3, angle, 1.0);
+    renderer.arc(0.2, 0.5 , 0.8, 0.5, 0.3, angle, 3.0);
+    renderer.arc(0.2, 0.55 , 0.8, 0.55, 0.3, angle, 1.0);
 
-    renderer.wave(0.2, 0.6, 0.8, 0.6, angle * 100, 0.02, angle, 1.0);
+    renderer.wave(0.2, 0.6, 0.8, 0.6, angle * 100, 0.02, angle, 5.0);
+    renderer.wave(0.2, 0.7, 0.8, 0.7, angle * 100, 0.02, angle, 8.0);
     
         
     angle += 0.01;

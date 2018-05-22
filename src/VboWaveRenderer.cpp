@@ -21,7 +21,9 @@ void VboWave::set(float x1, float y1, float x2, float y2, float freq, float ampl
     int length = line.length();
     float angle = line.getNormalized().angle(ofVec2f(1,0));
     
-    ofSetLineWidth(thick);
+    
+    //update linewidth
+    lineWidth = thick;
     
     //Draw
     ofVec2f currentPointOnLine = ofVec2f(0, 0);
@@ -50,6 +52,7 @@ void VboWave::draw() {
     vbo.updateColorData(colors, counter.color);
     vbo.updateIndexData(indices, counter.index);
     
+    glLineWidth(lineWidth);
     vbo.drawElements(GL_LINES, counter.index);
     
     resetCount();
