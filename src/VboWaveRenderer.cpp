@@ -17,22 +17,22 @@ void VboWave::set(float x1, float y1, float x2, float y2, float freq, float ampl
     ofVec2f start = ofVec2f(x1 * width, y1 * height);
     ofVec2f end = ofVec2f(x2 * width, y2 * height);
     ofVec2f line = end - start;
-    
+
     int length = line.length();
     float angle = line.getNormalized().angle(ofVec2f(1,0));
-    
-    
+
+
     //update linewidth
     lineWidth = thick;
-    
+
     //Draw
     ofVec2f currentPointOnLine = ofVec2f(0, 0);
-    
+
     //First position
     ofVec2f currentPos = start + line.getNormalized().rotate(90) * sin((phase * 2.0 * PI)) * width * amplitude;
     addVertex(currentPos);
     addColor(color);
-    
+
     //Other pos
     static float ap = 0;    //advanced phase
     for (float i = 1; i <= VBOWAVE_DIVISION; i += 1.0) {
@@ -51,10 +51,10 @@ void VboWave::draw() {
     vbo.updateVertexData(verts, counter.vertex);
     vbo.updateColorData(colors, counter.color);
     vbo.updateIndexData(indices, counter.index);
-    
+
     glLineWidth(lineWidth);
     vbo.drawElements(GL_LINES, counter.index);
-    
+
     resetCount();
 }
 
@@ -90,7 +90,7 @@ void VboWave::resetCount() {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 VboWaveRenderer::VboWaveRenderer() {
-    
+
 }
 
 void VboWaveRenderer::setup() {
@@ -115,6 +115,7 @@ void VboWaveRenderer::setScreenSize(float w, float h) {
     for(auto &v : vboWave) {
         v.setup(width, height);
     }
+    resetCount();
 }
 
 void VboWaveRenderer::wave(float x1, float y1, float x2, float y2, float freq, float amplitude, float phase, float thick) {
@@ -126,6 +127,6 @@ void VboWaveRenderer::draw() {
     for(int i = 0; i < waveCount; i++) {
         vboWave[i].draw();
     }
-    
+
     waveCount = 0;
 }
