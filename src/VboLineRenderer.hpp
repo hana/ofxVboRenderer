@@ -14,6 +14,7 @@
 
 constexpr int VBOLINE_VERTS_MAX = VBOLINE_NUM_MAX * 4;
 constexpr int VBOLINE_INDICES_MAX = VBOLINE_NUM_MAX * 6;
+const float THICK_MOD = 0.3125;
 
 class VboLineRenderer {
 public:

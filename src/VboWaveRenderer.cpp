@@ -101,6 +101,14 @@ void VboWaveRenderer::setup() {
     }
 }
 
+void VboWaveRenderer::setup(float w, float h) {
+    width = w;
+    height = h;
+    for(auto &v : vboWave) {
+        v.setup(width, height);
+    }
+}
+
 void VboWaveRenderer::setScreenSize() {
     width = ofGetWidth();
     height = ofGetHeight();
@@ -115,7 +123,7 @@ void VboWaveRenderer::setScreenSize(float w, float h) {
     for(auto &v : vboWave) {
         v.setup(width, height);
     }
-    resetCount();
+    
 }
 
 void VboWaveRenderer::wave(float x1, float y1, float x2, float y2, float freq, float amplitude, float phase, float thick) {

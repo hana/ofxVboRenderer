@@ -10,7 +10,7 @@
 
 VboLineRenderer::VboLineRenderer() {
     thick = 1.0;
-    color = 0.0;
+    color = 1.0;
     
 }
 
@@ -66,7 +66,7 @@ void VboLineRenderer::line(float x1, float y1, float x2, float y2, float _thick)
     end = this->getPosition(x2, y2);
     ofVec2f vec = start - end;
     ofVec2f normalized = vec.getNormalized();
-    ofVec2f w = normalized.getRotatedRad(PI * 0.5) * _thick * 0.5 * width;
+    ofVec2f w = normalized.getRotatedRad(PI * 0.5) * _thick * THICK_MOD;
     
     
     //Get pos of each corner

@@ -33,8 +33,13 @@ public:
     inline void setScreenSize() {
         width = ofGetWidth();
         height = ofGetHeight();
+        resetCount();
     }
-
+    inline void setScreenSize(float w, float h) {
+        width = w;
+        height = h;
+        resetCount();
+    }
 
     inline void setColor(ofFloatColor _color) {
         color = _color;
