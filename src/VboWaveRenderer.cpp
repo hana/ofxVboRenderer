@@ -123,8 +123,8 @@ void VboWaveRenderer::setScreenSize(float w, float h) {
     for(auto &v : vboWave) {
         v.setup(width, height);
     }
-    
 }
+
 
 void VboWaveRenderer::wave(float x1, float y1, float x2, float y2, float freq, float amplitude, float phase, float thick) {
     vboWave[waveCount].set(x1, y1, x2, y2, freq, amplitude, phase, thick);
