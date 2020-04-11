@@ -65,10 +65,10 @@ private:
     vbo_count_t counter;
 
     ofVbo vbo;
-    ofVec2f verts[VBOWAVE_VERTS_MAX];
-    ofFloatColor colors[VBOWAVE_VERTS_MAX];
-    ofIndexType indices[VBOWAVE_INDICES_MAX];
-
+    std::array<glm::vec2, VBOWAVE_VERTS_MAX> verts;
+    std::array<ofFloatColor, VBOWAVE_VERTS_MAX> colors;
+    std::array<ofIndexType, VBOWAVE_INDICES_MAX> indices;
+    
 };
 
 class VboWaveRenderer {

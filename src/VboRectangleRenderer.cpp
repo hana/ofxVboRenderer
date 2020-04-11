@@ -26,15 +26,15 @@ void VboRectangleRenderer::setup(float w, float h) {
 }
 
 void VboRectangleRenderer::draw() {
-    filledVbo.updateVertexData(filledPos, filledCounter.vertex);
-    filledVbo.updateColorData(filledColors, filledCounter.color);
-    filledVbo.updateIndexData(filledIndices, filledCounter.index);
+    filledVbo.updateVertexData(filledPos.begin(), filledCounter.vertex);
+    filledVbo.updateColorData(filledColors.begin(), filledCounter.color);
+    filledVbo.updateIndexData(filledIndices.begin(), filledCounter.index);
     
     filledVbo.drawElements(GL_TRIANGLES, filledCounter.index);
     
-    noFillVbo.updateVertexData(noFillPos, noFillCounter.vertex);
-    noFillVbo.updateColorData(noFillColors, noFillCounter.color);
-    noFillVbo.updateIndexData(noFillIndices, noFillCounter.index);
+    noFillVbo.updateVertexData(noFillPos.begin(), noFillCounter.vertex);
+    noFillVbo.updateColorData(noFillColors.begin(), noFillCounter.color);
+    noFillVbo.updateIndexData(noFillIndices.begin(), noFillCounter.index);
 
     glLineWidth(thick);
     noFillVbo.drawElements(GL_LINES, noFillCounter.index);
@@ -106,13 +106,13 @@ void VboRectangleRenderer::noFillRectangle(ofVec2f pos, float w, float h, float 
 }
 
 void VboRectangleRenderer::initVbo() {
-    filledVbo.setVertexData(filledPos, VBORECTANGLE_VERTS_MAX, GL_DYNAMIC_DRAW);
-    filledVbo.setColorData(filledColors, VBORECTANGLE_VERTS_MAX, GL_DYNAMIC_DRAW);
-    filledVbo.setIndexData(filledIndices, VBORECTANGLE_INDICES_MAX, GL_DYNAMIC_DRAW);
+    filledVbo.setVertexData(filledPos.begin(), VBORECTANGLE_VERTS_MAX, GL_DYNAMIC_DRAW);
+    filledVbo.setColorData(filledColors.begin(), VBORECTANGLE_VERTS_MAX, GL_DYNAMIC_DRAW);
+    filledVbo.setIndexData(filledIndices.begin(), VBORECTANGLE_INDICES_MAX, GL_DYNAMIC_DRAW);
     
-    noFillVbo.setVertexData(noFillPos, VBORECTANGLE_VERTS_MAX, GL_DYNAMIC_DRAW);
-    noFillVbo.setColorData(noFillColors, VBORECTANGLE_VERTS_MAX, GL_DYNAMIC_DRAW);
-    noFillVbo.setIndexData(noFillIndices, VBORECTANGLE_INDICES_MAX, GL_DYNAMIC_DRAW);
+    noFillVbo.setVertexData(noFillPos.begin(), VBORECTANGLE_VERTS_MAX, GL_DYNAMIC_DRAW);
+    noFillVbo.setColorData(noFillColors.begin(), VBORECTANGLE_VERTS_MAX, GL_DYNAMIC_DRAW);
+    noFillVbo.setIndexData(noFillIndices.begin(), VBORECTANGLE_INDICES_MAX, GL_DYNAMIC_DRAW);
 }
 
 void VboRectangleRenderer::initCount() {

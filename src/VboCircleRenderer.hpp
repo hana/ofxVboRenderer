@@ -54,21 +54,18 @@ private:
     float width, height, lineWidth;
     ofFloatColor color;
     
-    
-    
     //VBO
     vbo_count_t filledCounter;
     ofVbo filledVbo;
-    ofVec2f filledPos[VBOCIRCLE_VERTICES_MAX];
-    ofFloatColor filledColors[VBOCIRCLE_VERTICES_MAX];
-    ofIndexType filledIndices[VBOCIRCLE_VERTICES_MAX];
+    std::array<glm::vec2, VBOCIRCLE_VERTICES_MAX> filledPos;
+    std::array<ofFloatColor, VBOCIRCLE_VERTICES_MAX> filledColors;
+    std::array<ofIndexType, VBOCIRCLE_VERTICES_MAX> filledIndices;
     
     vbo_count_t noFillCounter;
     ofVbo noFillVbo;
-    ofVec2f noFillPos[VBOCIRCLE_VERTICES_MAX];
-    ofFloatColor noFillColors[VBOCIRCLE_VERTICES_MAX];
-    ofIndexType noFillIndices[VBOCIRCLE_VERTICES_MAX];
-    
+    std::array<glm::vec2,VBOCIRCLE_VERTICES_MAX> noFillPos;
+    std::array<ofFloatColor,VBOCIRCLE_VERTICES_MAX> noFillColors;
+    std::array<ofIndexType, VBOCIRCLE_VERTICES_MAX> noFillIndices;
 };
 
 #endif /* VboCircle_hpp */

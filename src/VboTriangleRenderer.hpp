@@ -53,16 +53,15 @@ private:
     //VBO
     vbo_count_t filledCounter;
     ofVbo filledTriangleVbo;
-    ofVec2f filledTrianglePos[VBOTRIGANGLE_VERTS_MAX];
-    ofFloatColor filledTriangleColors[VBOTRIGANGLE_VERTS_MAX];
-    ofIndexType filledTriangleIndices[VBOTRIGANGLE_VERTS_MAX];
+    std::array<glm::vec2, VBOTRIGANGLE_VERTS_MAX> filledTrianglePos;
+    std::array<ofFloatColor, VBOTRIGANGLE_VERTS_MAX> filledTriangleColors;
+    std::array<ofIndexType, VBOTRIGANGLE_VERTS_MAX> filledTriangleIndices;
     
     vbo_count_t noFillCounter;
     ofVbo noFillTriangleVbo;
-    ofVec2f noFillTrianglePos[VBOTRIGANGLE_VERTS_MAX];
-    ofFloatColor noFillTriangleColors[VBOTRIGANGLE_VERTS_MAX];
-    ofIndexType noFillTriangleIndices[VBOTRIANGLE_INDICES_MAX];
-    
+    std::array<glm::vec2, VBOTRIGANGLE_VERTS_MAX> noFillTrianglePos;
+    std::array<ofFloatColor, VBOTRIGANGLE_VERTS_MAX> noFillTriangleColors;
+    std::array<ofIndexType, VBOTRIGANGLE_VERTS_MAX> noFillTriangleIndices;
 };
 
 #endif /* VboTriangleRenderer_hpp */

@@ -78,6 +78,10 @@ void ofxVboRenderer::setCircleBaseDiameter(int baseDiameter) {
     circleRenderer.setBaseDiameter(baseDiameter);
 }
 
+void ofxVboRenderer::setCircleThickness(float _thickness) {
+    circleRenderer.setLineWidth(_thickness);
+}
+
 void ofxVboRenderer::draw() {
     ofEnableAlphaBlending();
     circleRenderer.draw();

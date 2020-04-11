@@ -17,7 +17,7 @@ void ofApp::update(){
 
     renderer.setColor(1.0);
     renderer.circle(0.25, 0.25, 0.1, true);   // x, y, diameter, fill
-    renderer.line(0.8, 0.2, 0.8, 0.8, 0.01);    // x1, y1, x2, y2, thick
+    renderer.line(0.8, 0.2, 0.8, 0.8, 1.0);    // x1, y1, x2, y2, thickness
     renderer.triangle(0.5, 0.25, 0.1, angle, false); //x, y, size, angle, fill
     
     renderer.setColor(1.0, 0.0, 0.0, 0.5);  //rgba
@@ -25,7 +25,7 @@ void ofApp::update(){
     
     ofVec2f pos = ofVec2f(0.25, 0.75);
     renderer.rect(pos, 0.1, 0.05, angle, true);  //center, width, height, fill
-//    renderer.rect(0.35, 0.8, 0.4, 0.9, angle, false);   //x1, y1, x2, y2, angle, fill
+    //  renderer.rect(0.35, 0.8, 0.4, 0.9, angle, false);   //x1, y1, x2, y2, angle, fill
     
     renderer.setColor(1.0);
     renderer.arc(0.2, 0.5 , 0.8, 0.5, 0.3, angle, 3.0);

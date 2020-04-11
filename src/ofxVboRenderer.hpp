@@ -6,6 +6,8 @@
 //
 //
 
+#pragma once
+
 #ifndef ofxVboRenderer_hpp
 #define ofxVboRenderer_hpp
 
@@ -27,6 +29,7 @@ public:
     void setColor(float red, float green, float blue, float alpha = 1.0);
     void setColor(ofFloatColor c);
     void setCircleBaseDiameter(int baseDiameter);
+    void setCircleThickness(float _thickness);
     void draw();
     void circle(float x, float y, float diameter, bool fill);
     void line(float x1, float y1, float x2, float y2, float _thick);

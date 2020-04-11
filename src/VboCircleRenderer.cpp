@@ -8,7 +8,7 @@
 
 #include "VboCircleRenderer.hpp"
 
-constexpr float M_2XPI = M_PI * 2.0;
+constexpr double M_2XPI = M_PI * 2.0;
 
 VboCircleRenderer::VboCircleRenderer() {
     lineWidth = 4.0;
@@ -47,27 +47,27 @@ void VboCircleRenderer::setColor(float brightness, float alpha) {
 }
 
 void VboCircleRenderer::initVbo() {
-    filledVbo.setVertexData(filledPos, VBOCIRCLE_VERTICES_MAX, GL_DYNAMIC_DRAW);
-    filledVbo.setIndexData(filledIndices, VBOCIRCLE_VERTICES_MAX, GL_DYNAMIC_DRAW);
-    filledVbo.setColorData(filledColors, VBOCIRCLE_VERTICES_MAX, GL_DYNAMIC_DRAW);
+    filledVbo.setVertexData(filledPos.begin(), VBOCIRCLE_VERTICES_MAX, GL_DYNAMIC_DRAW);
+    filledVbo.setIndexData(filledIndices.begin(), VBOCIRCLE_VERTICES_MAX, GL_DYNAMIC_DRAW);
+    filledVbo.setColorData(filledColors.begin(), VBOCIRCLE_VERTICES_MAX, GL_DYNAMIC_DRAW);
     
-    noFillVbo.setVertexData(noFillPos, VBOCIRCLE_VERTICES_MAX, GL_DYNAMIC_DRAW);
-    noFillVbo.setIndexData(noFillIndices, VBOCIRCLE_VERTICES_MAX, GL_DYNAMIC_DRAW);
-    noFillVbo.setColorData(noFillColors, VBOCIRCLE_VERTICES_MAX, GL_DYNAMIC_DRAW);
+    noFillVbo.setVertexData(noFillPos.begin(), VBOCIRCLE_VERTICES_MAX, GL_DYNAMIC_DRAW);
+    noFillVbo.setIndexData(noFillIndices.begin(), VBOCIRCLE_VERTICES_MAX, GL_DYNAMIC_DRAW);
+    noFillVbo.setColorData(noFillColors.begin(), VBOCIRCLE_VERTICES_MAX, GL_DYNAMIC_DRAW);
 }
 
 
 void VboCircleRenderer::draw() {
-    filledVbo.updateVertexData(filledPos, filledCounter.vertex);
-    filledVbo.updateIndexData(filledIndices, filledCounter.index);
-    filledVbo.updateColorData(filledColors, filledCounter.color);
+    filledVbo.updateVertexData(filledPos.begin(), filledCounter.vertex);
+    filledVbo.updateIndexData(filledIndices.begin(), filledCounter.index);
+    filledVbo.updateColorData(filledColors.begin(), filledCounter.color);
     
     filledVbo.drawElements(GL_TRIANGLES, filledCounter.index);
     
     glLineWidth(lineWidth);
-    noFillVbo.updateVertexData(noFillPos, noFillCounter.vertex);
-    noFillVbo.updateIndexData(noFillIndices, noFillCounter.index);
-    noFillVbo.updateColorData(noFillColors, noFillCounter.color);
+    noFillVbo.updateVertexData(noFillPos.begin(), noFillCounter.vertex);
+    noFillVbo.updateIndexData(noFillIndices.begin(), noFillCounter.index);
+    noFillVbo.updateColorData(noFillColors.begin(), noFillCounter.color);
     
     noFillVbo.drawElements(GL_LINES, noFillCounter.index);
     
@@ -89,7 +89,7 @@ void VboCircleRenderer::filled(float x, float y, float diameter) {
     float oneStep = M_2XPI / res;
     int baseIndex = filledCounter.vertex;
     
-    //Set Center vertex
+    // Set Center vertex
     ofVec2f center = ofVec2f(x * width, y * height);
     addVertex(true, center);
     addColor(true, color);

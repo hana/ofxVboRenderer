@@ -10,6 +10,7 @@
 #define VboArcRenderer_hpp
 
 #include "ofMain.h"
+#include <vector>
 #include "config.h"
 
 static constexpr int VBOARC_DIVISION = 128;
@@ -45,10 +46,10 @@ private:
     void addColor(ofFloatColor _color);
     
     ofVbo vbo;
-    ofVec2f verts[VBOARC_VERTS_MAX];
-    ofFloatColor colors[VBOARC_VERTS_MAX];
-    ofIndexType indices[VBOARC_INDICES_MAX];
-
+    std::array<glm::vec2, VBOARC_VERTS_MAX> verts;
+    std::array<ofFloatColor, VBOARC_VERTS_MAX> colors;
+    std::array<ofIndexType,VBOARC_INDICES_MAX> indices;
+    
     vbo_count_t counter;
     float width, height, lineWidth;
     ofFloatColor color;

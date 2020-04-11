@@ -47,9 +47,9 @@ void VboLineRenderer::setColor(ofFloatColor c) {
 
 
 void VboLineRenderer::initVbo() {
-    vbo.setVertexData(vertices, VBOLINE_VERTS_MAX, GL_DYNAMIC_DRAW);
-    vbo.setColorData(colors, VBOLINE_VERTS_MAX, GL_DYNAMIC_DRAW);
-    vbo.setIndexData(indices, VBOLINE_INDICES_MAX, GL_DYNAMIC_DRAW);
+    vbo.setVertexData(vertices.begin(), VBOLINE_VERTS_MAX, GL_DYNAMIC_DRAW);
+    vbo.setColorData(colors.begin(), VBOLINE_VERTS_MAX, GL_DYNAMIC_DRAW);
+    vbo.setIndexData(indices.begin(), VBOLINE_INDICES_MAX, GL_DYNAMIC_DRAW);
 }
 
 void VboLineRenderer::initCount() {
@@ -88,9 +88,9 @@ void VboLineRenderer::line(float x1, float y1, float x2, float y2, float _thick)
 
 void VboLineRenderer::draw() {
     //update vbo
-    vbo.updateVertexData(vertices, vertsCount);
-    vbo.updateColorData(colors, vertsCount);
-    vbo.updateIndexData(indices, indicesCount);
+    vbo.updateVertexData(vertices.begin(), vertsCount);
+    vbo.updateColorData(colors.begin(), vertsCount);
+    vbo.updateIndexData(indices.begin(), indicesCount);
     
     //draw
     vbo.drawElements(GL_TRIANGLES, indicesCount);

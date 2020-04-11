@@ -102,16 +102,16 @@ private:
     //VBO
     vbo_count_t filledCounter;
     ofVbo filledVbo;
-    ofVec2f filledPos[VBORECTANGLE_VERTS_MAX];
-    ofFloatColor filledColors[VBORECTANGLE_VERTS_MAX];
-    ofIndexType filledIndices[VBORECTANGLE_INDICES_MAX];
-
+    std::array<glm::vec2,VBORECTANGLE_VERTS_MAX> filledPos;
+    std::array<ofFloatColor, VBORECTANGLE_VERTS_MAX> filledColors;
+    std::array<ofIndexType, VBORECTANGLE_INDICES_MAX> filledIndices;
+    
     vbo_count_t noFillCounter;
     ofVbo noFillVbo;
-    ofVec2f noFillPos[VBORECTANGLE_VERTS_MAX];
-    ofFloatColor noFillColors[VBORECTANGLE_VERTS_MAX];
-    ofIndexType noFillIndices[VBORECTANGLE_INDICES_MAX];
-
+    std::array<glm::vec2, VBORECTANGLE_VERTS_MAX> noFillPos;
+    std::array<ofFloatColor, VBORECTANGLE_VERTS_MAX> noFillColors;
+    std::array<ofIndexType, VBORECTANGLE_INDICES_MAX> noFillIndices;
+    
 };
 
 #endif /* VboRectangleRenderer_hpp */

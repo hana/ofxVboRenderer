@@ -6,6 +6,8 @@
 //
 //
 
+#pragma once
+
 #ifndef config_h
 #define config_h
 
@@ -16,11 +18,11 @@ struct vbo_count_t {
     int index = 0;
 };
 
-constexpr int VBOLINE_NUM_MAX = 512;
-constexpr int VBOCIRCLE_NUM_MAX = 512;
-constexpr int VBOTRIANGLE_NUM_MAX = 512;
-constexpr int VBORECTANGLE_NUM_MAX = 512;
-constexpr int VBOARC_NUM_MAX = 512;
-constexpr int VBOWAVE_NUM_MAX = 512;
+constexpr unsigned int VBOLINE_NUM_MAX = 512;
+constexpr unsigned int VBOCIRCLE_NUM_MAX = 512;
+constexpr unsigned int VBOTRIANGLE_NUM_MAX = 512;
+constexpr unsigned int VBORECTANGLE_NUM_MAX = 512;
+constexpr unsigned int VBOARC_NUM_MAX = 512;
+constexpr unsigned int VBOWAVE_NUM_MAX = 512;
 
 #endif /* config_h */

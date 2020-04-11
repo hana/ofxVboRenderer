@@ -48,9 +48,9 @@ void VboWave::set(float x1, float y1, float x2, float y2, float freq, float ampl
 
 
 void VboWave::draw() {
-    vbo.updateVertexData(verts, counter.vertex);
-    vbo.updateColorData(colors, counter.color);
-    vbo.updateIndexData(indices, counter.index);
+    vbo.updateVertexData(verts.begin(), counter.vertex);
+    vbo.updateColorData(colors.begin(), counter.color);
+    vbo.updateIndexData(indices.begin(), counter.index);
 
     glLineWidth(lineWidth);
     vbo.drawElements(GL_LINES, counter.index);
@@ -59,9 +59,9 @@ void VboWave::draw() {
 }
 
 void VboWave::initVbo() {
-    vbo.setVertexData(verts, VBOWAVE_VERTS_MAX, GL_DYNAMIC_DRAW);
-    vbo.setColorData(colors, VBOWAVE_VERTS_MAX, GL_DYNAMIC_DRAW);
-    vbo.setIndexData(indices, VBOWAVE_INDICES_MAX, GL_DYNAMIC_DRAW);
+    vbo.setVertexData(verts.begin(), VBOWAVE_VERTS_MAX, GL_DYNAMIC_DRAW);
+    vbo.setColorData(colors.begin(), VBOWAVE_VERTS_MAX, GL_DYNAMIC_DRAW);
+    vbo.setIndexData(indices.begin(), VBOWAVE_INDICES_MAX, GL_DYNAMIC_DRAW);
 }
 
 void VboWave::addVertex(ofVec2f pos) {

@@ -47,10 +47,9 @@ private:
     
     //VBO
     ofVbo vbo;
-    ofVec2f vertices[VBOLINE_VERTS_MAX];
-    ofFloatColor colors[VBOLINE_VERTS_MAX];
-    ofIndexType indices[VBOLINE_INDICES_MAX];
-    
+    std::array<glm::vec2, VBOLINE_VERTS_MAX> vertices;
+    std::array<ofFloatColor, VBOLINE_VERTS_MAX> colors;
+    std::array<ofIndexType, VBOLINE_INDICES_MAX> indices;    
 };
 
 #endif /* VboLineRenderer_hpp */

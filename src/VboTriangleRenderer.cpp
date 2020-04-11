@@ -47,26 +47,26 @@ void VboTriangleRenderer::setColor(float brightness, float alpha) {
 }
 
 void VboTriangleRenderer::initVbo() {
-    filledTriangleVbo.setVertexData(filledTrianglePos, VBOTRIGANGLE_VERTS_MAX, GL_DYNAMIC_DRAW);
-    filledTriangleVbo.setIndexData(filledTriangleIndices, VBOTRIGANGLE_VERTS_MAX, GL_DYNAMIC_DRAW);
-    filledTriangleVbo.setColorData(filledTriangleColors, VBOTRIGANGLE_VERTS_MAX, GL_DYNAMIC_DRAW);
+    filledTriangleVbo.setVertexData(filledTrianglePos.begin(), VBOTRIGANGLE_VERTS_MAX, GL_DYNAMIC_DRAW);
+    filledTriangleVbo.setIndexData(filledTriangleIndices.begin(), VBOTRIGANGLE_VERTS_MAX, GL_DYNAMIC_DRAW);
+    filledTriangleVbo.setColorData(filledTriangleColors.begin(), VBOTRIGANGLE_VERTS_MAX, GL_DYNAMIC_DRAW);
     
-    noFillTriangleVbo.setVertexData(noFillTrianglePos, VBOTRIGANGLE_VERTS_MAX, GL_DYNAMIC_DRAW);
-    noFillTriangleVbo.setIndexData(noFillTriangleIndices, VBOTRIANGLE_INDICES_MAX, GL_DYNAMIC_DRAW);
-    noFillTriangleVbo.setColorData(noFillTriangleColors, VBOTRIGANGLE_VERTS_MAX, GL_DYNAMIC_DRAW);
+    noFillTriangleVbo.setVertexData(noFillTrianglePos.begin(), VBOTRIGANGLE_VERTS_MAX, GL_DYNAMIC_DRAW);
+    noFillTriangleVbo.setIndexData(noFillTriangleIndices.begin(), VBOTRIANGLE_INDICES_MAX, GL_DYNAMIC_DRAW);
+    noFillTriangleVbo.setColorData(noFillTriangleColors.begin(), VBOTRIGANGLE_VERTS_MAX, GL_DYNAMIC_DRAW);
 }
 
 void VboTriangleRenderer::draw() {
-    filledTriangleVbo.updateVertexData(filledTrianglePos, filledCounter.vertex);
-    filledTriangleVbo.updateIndexData(filledTriangleIndices, filledCounter.index);
-    filledTriangleVbo.updateColorData(filledTriangleColors, filledCounter.color);
+    filledTriangleVbo.updateVertexData(filledTrianglePos.begin(), filledCounter.vertex);
+    filledTriangleVbo.updateIndexData(filledTriangleIndices.begin(), filledCounter.index);
+    filledTriangleVbo.updateColorData(filledTriangleColors.begin(), filledCounter.color);
     
     filledTriangleVbo.drawElements(GL_TRIANGLES,  filledCounter.index);
     
     glLineWidth(lineWidth);
-    noFillTriangleVbo.updateVertexData(noFillTrianglePos, noFillCounter.vertex);
-    noFillTriangleVbo.updateIndexData(noFillTriangleIndices, noFillCounter.index);
-    noFillTriangleVbo.updateColorData(noFillTriangleColors, noFillCounter.color);
+    noFillTriangleVbo.updateVertexData(noFillTrianglePos.begin(), noFillCounter.vertex);
+    noFillTriangleVbo.updateIndexData(noFillTriangleIndices.begin(), noFillCounter.index);
+    noFillTriangleVbo.updateColorData(noFillTriangleColors.begin(), noFillCounter.color);
     
     noFillTriangleVbo.drawElements(GL_LINES, noFillCounter.index);
     

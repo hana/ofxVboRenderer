@@ -82,9 +82,10 @@ void VboArc::set(float x1, float y1, float x2, float y2, float arcHeight, float 
 }
 
 void VboArc::draw() {
-    vbo.updateVertexData(verts, counter.vertex);
-    vbo.updateColorData(colors, counter.color);
-    vbo.updateIndexData(indices, counter.index);
+    vbo.updateVertexData(verts.begin(), counter.vertex);
+    vbo.updateColorData(colors.begin(), counter.color);
+    vbo.updateIndexData(indices.begin(), counter.index);
+    
     
     glLineWidth(lineWidth);
     vbo.drawElements(GL_LINES, counter.index);
@@ -94,9 +95,9 @@ void VboArc::draw() {
 
 
 void VboArc::initVbo() {
-    vbo.setVertexData(verts, VBOARC_VERTS_MAX, GL_DYNAMIC_DRAW);
-    vbo.setColorData(colors, VBOARC_VERTS_MAX, GL_DYNAMIC_DRAW);
-    vbo.setIndexData(indices, VBOARC_INDICES_MAX, GL_DYNAMIC_DRAW);
+    vbo.setVertexData(verts.begin(), VBOARC_VERTS_MAX, GL_DYNAMIC_DRAW);
+    vbo.setColorData(colors.begin(), VBOARC_VERTS_MAX, GL_DYNAMIC_DRAW);
+    vbo.setIndexData(indices.begin(), VBOARC_INDICES_MAX, GL_DYNAMIC_DRAW);
 }
 
 void VboArc::resetCount() {
