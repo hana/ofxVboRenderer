@@ -25,7 +25,9 @@ public:
     void setScreenSize(float w, float h);
     void setColor(ofFloatColor _color);
     void setColor(float brightness, float alpha = 1.0);
-    void setLineWidth(float w);
+    inline void setLineWidth(float w)   {
+        lineWidth = w;
+    };
     inline void setBaseDiameter(int _baseDiameter) {
         baseDiameter = _baseDiameter;
     }
