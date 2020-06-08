@@ -10,7 +10,7 @@
 #define VboWaveRenderer_hpp
 
 #include "ofMain.h"
-#include "config.h"
+#include "VboRendererConfig.h"
 
 static constexpr float VBOWAVE_DIVISION = 1024.0;
 static constexpr float VBOWAVE_DIVISION_RECIPRO = 1 / VBOWAVE_DIVISION;

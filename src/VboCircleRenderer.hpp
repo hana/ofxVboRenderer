@@ -10,7 +10,7 @@
 #define VboCircleRenderer_hpp
 
 #include "ofMain.h"
-#include "config.h"
+#include "VboRendererConfig.h"
 
 
 constexpr int RESOLUTION_MAX = 120;

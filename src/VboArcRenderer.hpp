@@ -11,7 +11,7 @@
 
 #include "ofMain.h"
 #include <vector>
-#include "config.h"
+#include "VboRendererConfig.h"
 
 static constexpr int VBOARC_DIVISION = 128;
 constexpr int VBOARC_VERTS_MAX = VBOARC_DIVISION * 2;

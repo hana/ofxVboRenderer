@@ -10,7 +10,7 @@
 #define VboLineRenderer_hpp
 
 #include "ofMain.h"
-#include "config.h"
+#include "VboRendererConfig.h"
 
 constexpr int VBOLINE_VERTS_MAX = VBOLINE_NUM_MAX * 4;
 constexpr int VBOLINE_INDICES_MAX = VBOLINE_NUM_MAX * 6;

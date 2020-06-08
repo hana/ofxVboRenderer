@@ -10,7 +10,7 @@
 #define VboRectangleRenderer_hpp
 
 #include "ofMain.h"
-#include "config.h"
+#include "VboRendererConfig.h"
 
 constexpr int RECTANGLE_VERTS_NUM = 4;
 constexpr int VBORECTANGLE_VERTS_MAX = VBORECTANGLE_NUM_MAX * 4;

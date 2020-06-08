@@ -10,7 +10,7 @@
 #define VboTriangleRenderer_hpp
 
 #include "ofMain.h"
-#include "config.h"
+#include "VboRendererConfig.h"
 
 
 constexpr int VBOTRIGANGLE_VERTS_MAX = VBOTRIANGLE_NUM_MAX * 3;
